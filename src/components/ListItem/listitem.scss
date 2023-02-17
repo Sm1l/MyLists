@@ -1,0 +1,16 @@
+@import "../../abstracts/variables.scss";
+
+.listitem {
+  display: flex;
+  border-radius: 15px;
+  gap: 20px;
+  background-color: $color-white;
+  padding: 16px;
+
+  &__name {
+  }
+
+  &__number {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,14 @@
+@import "../../abstracts/variables.scss";
+
+.input {
+  font: inherit;
+  display: block;
+  border-radius: 15px;
+  background-color: $color-white;
+  padding: 16px 78px 16px 16px;
+  width: 100%;
+  color: $color-black;
+  &::placeholder {
+    opacity: 0.4;
+  }
+}
