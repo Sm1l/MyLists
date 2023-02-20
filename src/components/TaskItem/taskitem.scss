@@ -1,43 +1,30 @@
 @import "../../abstracts/variables.scss";
+@import "../../abstracts/animations.scss";
 
-.listitem {
+.taskitem {
   display: flex;
-  position: relative;
   border-radius: 15px;
-  border: 0px solid transparent;
   flex-direction: column;
+  border: 0px solid transparent;
+  //   gap: 20px;
   background-color: $color-white;
 
+  //   position: absolute;
+  //   z-index: 1;
+  //   animation: appear 1000ms ease-in;
+
   &__button {
+    font: inherit;
     display: flex;
     border-radius: 15px;
     width: 100%;
     padding: 16px;
+    color: $color-black-op04;
     background-color: $color-white;
     gap: 20px;
-    // z-index: 2;
 
     &:hover {
-      color: $color-black-op04;
+      color: $color-black;
     }
-  }
-
-  &__name {
-  }
-
-  &__number {
-    opacity: 0.4;
-  }
-
-  &_active {
-    background-color: $color-red;
-    color: $color-white;
-  }
-}
-
-.taskitem {
-  opacity: 1;
-  &_active {
-    opacity: 1;
   }
 }

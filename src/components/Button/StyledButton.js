@@ -1,12 +1,12 @@
-@import "../../abstracts/variables.scss";
+import styled from "styled-components";
 
-.button {
-  font: inherit;
+const StyledButton = styled.button`
+font: inherit;
   padding: 10px 8px;
   border-radius: 12px;
   position: absolute;
-  top: 6px;
-  right: 6px;
+  top: 4px;
+  right: 4px;
 
   background-color: $color-white;
   color: $color-black;
@@ -21,6 +21,6 @@
 
     &:hover {
       background-color: $color-dark-green;
-    }
-  }
-}
+    }`;
+
+export default StyledButton;

@@ -10,17 +10,9 @@ const ListItemContainer = () => {
   console.log(listItem);
 
   return (
-    //!подумать
-    <ul className="listitemcontainer">
-      {listItem?.length > 0 &&
-        listItem.map((item) => (
-          <li className="listitem" key={item.id}>
-            <p className="listitem__name">{item.name}</p>
-            <p className="listitem__number">{item.number}</p>
-          </li>
-          // <ListItem key={item.id} name={item.name} number={item.number} />
-        ))}
-    </ul>
+    <div className="listitemcontainer">
+      {listItem?.length > 0 && listItem.map((item) => <ListItem key={item.id} name={item.name} number={item.number} />)}
+    </div>
   );
 };
 
