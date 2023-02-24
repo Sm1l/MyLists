@@ -1,24 +1,60 @@
-import React, { useState } from "react";
-import "./taskitem.scss";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import React, { useState, useRef } from "react";
 
-const TaskItem = () => {
+import Form from "../Form/Form";
+// import OneTask from "../OneTask/OneTask";
+
+import "./taskitem.scss";
+import OneTaskContainer from "../OneTaskContainer/OneTaskContainer";
+
+const TaskItem = ({ setListItemisActive }) => {
   const [task, setTask] = useState("");
-  const [listItemIsActive, setListItemIsActive] = useState(false);
+  const inputRef = useRef();
+  const [taskItemIsActive, setTaskItemIsActive] = useState(false);
+  const [taskList, setTaskList] = useState([]);
 
   const taskItemHandleClick = (e) => {
-    console.log("button", e.target);
-    if (!listItemIsActive) {
+    // console.log("button", e.target);
+    // console.log(focusInputRef.current); //?при открытии не видит ref, подумать
+
+    if (!taskItemIsActive) {
       e.target.classList.add("taskitem_active");
     } else {
       e.target.classList.remove("taskitem_active");
     }
-    setListItemIsActive(!listItemIsActive);
+    setTaskItemIsActive(!taskItemIsActive);
   };
+
+  // const taskItemHandleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (task.trim()) {
+  //     console.log("taskItemHandleSubmit");
+  //     setListItemisActive(false);
+  //   } else {
+  //     console.log("Please enter new task");
+  //   }
+  //   setTask("");
+  // };
+
+  //* добавление task
+  const addTask = () => {
+    console.log(task);
+    setTaskList(() => {
+      return [{ text: task, isChecked: false, id: new Date().toISOString() }, ...taskList];
+    });
+    console.log(taskList);
+    setTask("");
+  };
+
   const taskItemHandleSubmit = (e) => {
     e.preventDefault();
-    console.log("taskItemHandleSubmit");
+    if (task.trim()) {
+      console.log(task);
+      addTask();
+      setTaskItemIsActive(false);
+    } else {
+      console.log("Please enter new task");
+    }
+    setTask("");
   };
 
   return (
@@ -26,12 +62,16 @@ const TaskItem = () => {
       <button className="taskitem__button" type="button" onClick={taskItemHandleClick}>
         + List Item
       </button>
-      {listItemIsActive && (
-        <form action="" className="taskitem__form" onSubmit={taskItemHandleSubmit}>
-          <Input value={task} setValue={setTask} placeholder="+ New Task" />
-          {/* <Button name="+ Add" type="submit" value={task} /> */}
-        </form>
+      {taskItemIsActive && (
+        <Form
+          value={task}
+          setValue={setTask}
+          buttonName={"+"}
+          subbitClickHandle={taskItemHandleSubmit}
+          inputRef={inputRef}
+        />
       )}
+      <OneTaskContainer taskList={taskList} />
     </div>
   );
 };

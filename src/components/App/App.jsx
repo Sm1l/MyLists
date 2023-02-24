@@ -1,3 +1,4 @@
+import AppContainer from "../AppContainer/AppContainer";
 import Form from "../Form/Form";
 import ListItemContainer from "../ListItemContainer/ListItemContainer";
 // import StyledApp from "./StyledApp";
@@ -8,11 +9,7 @@ function App() {
   return (
     // <StyledApp>
     <div className="app">
-      <h1 className="app__title">My Lists</h1>
-      {/* <StyledGlobal /> */}
-      <Form />
-      <ListItemContainer />
-      {/* <ListItem name="name" number="number" /> */}
+      <AppContainer />
     </div>
     // </StyledApp>
   );

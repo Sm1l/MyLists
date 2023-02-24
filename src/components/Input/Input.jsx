@@ -2,9 +2,11 @@ import React from "react";
 import "./input.scss";
 import Button from "../Button/Button";
 
-const Input = ({ value, setValue, placeholder }) => {
+const Input = ({ value, setValue, placeholder, inputRef }) => {
   const inputHandleChange = (e) => {
-    setValue(e.target.value);
+    if (setValue) {
+      setValue(e.target.value);
+    }
     console.log(e.target.value);
   };
   return (
@@ -16,6 +18,7 @@ const Input = ({ value, setValue, placeholder }) => {
         value={value}
         placeholder={placeholder}
         onChange={inputHandleChange}
+        ref={inputRef}
       />
       <label htmlFor="input" className="input__label"></label>
     </>

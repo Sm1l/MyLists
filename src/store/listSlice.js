@@ -7,8 +7,8 @@ const listSlice = createSlice({
   },
   reducers: {
     addList(state, action) {
-      console.log(state);
-      console.log(action);
+      // console.log(state);
+      // console.log(action);
       state.lists.push({ id: new Date().toISOString(), name: action.payload.name, number: 0, isActive: false });
     },
   },

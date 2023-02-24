@@ -1,0 +1,11 @@
+@import "../../abstracts/variables.scss";
+
+.onetask {
+  display: flex;
+  gap: 10px;
+  background-color: $color-white;
+  padding: 16px;
+  border: 0px solid transparent;
+  border-radius: 15px;
+  //   position: relative;
+}

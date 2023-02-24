@@ -1,33 +1,15 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-
-import { addList } from "../../store/listSlice";
+import React from "react";
 
 import Button from "../Button/Button";
 
 import "./form.scss";
 import Input from "../Input/Input";
 
-const Form = () => {
-  const [name, setName] = useState("");
-
-  const dispatch = useDispatch();
-
-  const addItem = (e) => {
-    e.preventDefault();
-    if (name.trim()) {
-      dispatch(addList({ name }));
-      console.log("New list:", name);
-    } else {
-      console.log("Please enter new list");
-    }
-    setName("");
-  };
-
+const Form = ({ value, setValue, buttonName, subbitClickHandle, inputRef }) => {
   return (
-    <form action="" className="form" onSubmit={addItem}>
-      <Input value={name} setValue={setName} placeholder="New list" />
-      <Button name="+ Add" type="submit" value={name} />
+    <form action="" className="form" onSubmit={subbitClickHandle}>
+      <Input value={value} setValue={setValue} placeholder="New list" inputRef={inputRef} />
+      <Button name={buttonName} type="submit" value={value} />
     </form>
   );
 };

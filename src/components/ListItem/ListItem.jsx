@@ -5,16 +5,16 @@ import TaskItem from "../TaskItem/TaskItem";
 import "./listitem.scss";
 
 const ListItem = ({ name, number }) => {
-  const [isActive, setIsActive] = useState(false);
+  const [listItemisActive, setListItemisActive] = useState(false);
 
   const listItemHandleClick = (e) => {
-    console.log("button", e.target);
-    if (!isActive) {
+    // console.log("button", e.target);
+    if (!listItemisActive) {
       e.target.classList.add("listitem_active");
     } else {
       e.target.classList.remove("listitem_active");
     }
-    setIsActive(!isActive);
+    setListItemisActive(!listItemisActive);
   };
 
   return (
@@ -23,7 +23,7 @@ const ListItem = ({ name, number }) => {
         <p className="listitem__name">{name}</p>
         <p className="listitem__number">{number}</p>
       </button>
-      {isActive && <TaskItem />}
+      {listItemisActive && <TaskItem setListItemisActive={setListItemisActive} />}
     </div>
   );
 };
