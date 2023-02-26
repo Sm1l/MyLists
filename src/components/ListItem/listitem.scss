@@ -1,21 +1,16 @@
 @import "../../abstracts/variables.scss";
 
 .listitem {
-  display: flex;
-  position: relative;
-  border-radius: 15px;
-  border: 0px solid transparent;
-  flex-direction: column;
-  background-color: $color-white;
-
   &__button {
     display: flex;
     border-radius: 15px;
+    position: relative;
     width: 100%;
     padding: 16px;
     background-color: $color-white;
     gap: 20px;
-    // z-index: 2;
+    font-size: inherit;
+    // z-index: 10;
 
     &:hover {
       color: $color-black-op04;
@@ -23,6 +18,8 @@
   }
 
   &__name {
+    // position: relative;
+    // z-index: 0;
   }
 
   &__number {

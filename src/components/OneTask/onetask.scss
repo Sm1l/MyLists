@@ -7,5 +7,75 @@
   padding: 16px;
   border: 0px solid transparent;
   border-radius: 15px;
-  //   position: relative;
+  position: relative;
+
+  &__label {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid $color-black-op04;
+    top: 16px;
+    left: 16px;
+    cursor: pointer;
+    transition: background-color 500ms ease-out;
+
+    &:hover {
+      background-color: $color-black-op04;
+      transition: background-color 500ms ease-out;
+    }
+
+    &:has(input:checked) {
+      //*крутая штука
+      background-color: $color-black;
+    }
+
+    & + input:checked {
+      background-color: $color-black;
+      color: $color-red;
+    }
+
+    &:has(input:checked)::after {
+      content: "";
+      width: 3px;
+      min-height: 12px;
+      border-radius: 1px;
+      transform: rotate(35deg);
+      background-color: $color-white;
+      position: absolute;
+      top: 3px;
+      left: 10px;
+    }
+
+    &:has(input:checked)::before {
+      content: "";
+      width: 3px;
+      min-height: 8px;
+      border-radius: 1px;
+      transform: rotate(-45deg);
+      background-color: $color-white;
+      position: absolute;
+      top: 7px;
+      left: 5px;
+    }
+  }
+  &__checkbox {
+    appearance: none;
+    visibility: hidden;
+    position: absolute;
+  }
+  &__text {
+    padding: 0px 0px 0px 26px;
+    cursor: pointer;
+
+    &_active {
+      text-decoration: line-through;
+      color: $color-black-op04;
+    }
+  }
 }
+
+// input:checked + p {
+//   text-decoration: line-through;
+//   color: $color-black-op04;
+// }

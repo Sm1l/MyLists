@@ -1,16 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import Form from "../Form/Form";
-// import OneTask from "../OneTask/OneTask";
+import OneTaskContainer from "../OneTaskContainer/OneTaskContainer";
+import createId from "../../helpers/createId";
 
 import "./taskitem.scss";
-import OneTaskContainer from "../OneTaskContainer/OneTaskContainer";
 
-const TaskItem = ({ setListItemisActive }) => {
+const TaskItem = () => {
   const [task, setTask] = useState("");
   const inputRef = useRef();
   const [taskItemIsActive, setTaskItemIsActive] = useState(false);
-  const [taskList, setTaskList] = useState([]);
+
+  const [taskList, setTaskList] = useState(() => {
+    //todo нужно поднимать
+    return JSON.parse(localStorage.getItem("MyLists.taskList")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("MyLists.taskList", JSON.stringify(taskList));
+  }, [taskList]);
 
   const taskItemHandleClick = (e) => {
     // console.log("button", e.target);
@@ -39,7 +47,14 @@ const TaskItem = ({ setListItemisActive }) => {
   const addTask = () => {
     console.log(task);
     setTaskList(() => {
-      return [{ text: task, isChecked: false, id: new Date().toISOString() }, ...taskList];
+      return [
+        {
+          text: task,
+          isChecked: false,
+          id: createId(),
+        },
+        ...taskList,
+      ];
     });
     console.log(taskList);
     setTask("");
@@ -71,7 +86,7 @@ const TaskItem = ({ setListItemisActive }) => {
           inputRef={inputRef}
         />
       )}
-      <OneTaskContainer taskList={taskList} />
+      <OneTaskContainer taskList={taskList} setTaskList={setTaskList} />
     </div>
   );
 };

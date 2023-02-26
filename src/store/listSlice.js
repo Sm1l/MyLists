@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import createId from "../helpers/createId";
 
 const listSlice = createSlice({
   name: "list",
@@ -9,8 +10,17 @@ const listSlice = createSlice({
     addList(state, action) {
       // console.log(state);
       // console.log(action);
-      state.lists.push({ id: new Date().toISOString(), name: action.payload.name, number: 0, isActive: false });
+      state.lists.push({
+        id: createId(),
+        name: action.payload.name,
+        number: 0,
+        // isActive: false,
+        listItemIsActive: false, //todo менять здесь
+      });
     },
+    // toggleListItemIsActive(state, action) {
+    //   state.lists.listItemIsActive = !listItemIsActive;
+    // },
   },
 });
 

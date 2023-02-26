@@ -5,16 +5,17 @@ import TaskItem from "../TaskItem/TaskItem";
 import "./listitem.scss";
 
 const ListItem = ({ name, number }) => {
-  const [listItemisActive, setListItemisActive] = useState(false);
+  //todo принимаем listItemIsActive
+  const [listItemIsActive, setListItemIsActive] = useState(false);
 
   const listItemHandleClick = (e) => {
     // console.log("button", e.target);
-    if (!listItemisActive) {
+    if (!listItemIsActive) {
       e.target.classList.add("listitem_active");
     } else {
       e.target.classList.remove("listitem_active");
     }
-    setListItemisActive(!listItemisActive);
+    setListItemIsActive(!listItemIsActive); //todo изменить в Redux
   };
 
   return (
@@ -23,7 +24,7 @@ const ListItem = ({ name, number }) => {
         <p className="listitem__name">{name}</p>
         <p className="listitem__number">{number}</p>
       </button>
-      {listItemisActive && <TaskItem setListItemisActive={setListItemisActive} />}
+      {listItemIsActive && <TaskItem />}
     </div>
   );
 };
