@@ -1,6 +1,11 @@
 @import "../../abstracts/variables.scss";
 
 .listitem {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  position: relative;
+  background-color: $color-white;
   &__button {
     display: flex;
     border-radius: 15px;
@@ -13,7 +18,7 @@
     // z-index: 10;
 
     &:hover {
-      color: $color-black-op04;
+      // color: $color-black-op04; //* firstmobile убирать hover
     }
   }
 

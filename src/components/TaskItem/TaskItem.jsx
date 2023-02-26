@@ -82,6 +82,7 @@ const TaskItem = () => {
           value={task}
           setValue={setTask}
           buttonName={"+"}
+          placeholder="New Item"
           subbitClickHandle={taskItemHandleSubmit}
           inputRef={inputRef}
         />

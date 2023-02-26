@@ -38,7 +38,7 @@ const AppContainer = () => {
     <div className="appcontainer">
       <h1 className="app__title">My Lists</h1>
       {/* <StyledGlobal /> */}
-      <Form value={name} setValue={setName} buttonName="+ Add" subbitClickHandle={addItem} />
+      <Form value={name} setValue={setName} placeholder="New list" buttonName="+ Add" subbitClickHandle={addItem} />
       {/* <Form buttonName="+ Add" subbitClickHandle={addItem} inputRef={inputRef} /> */}
       <ListItemContainer />
       {/* <ListItem name="name" number="number" /> */}
