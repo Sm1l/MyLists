@@ -15,6 +15,7 @@ const Input = ({ value, setValue, placeholder, inputRef }) => {
         type="text"
         className="input"
         id="input"
+        autoComplete="off"
         value={value}
         placeholder={placeholder}
         onChange={inputHandleChange}
