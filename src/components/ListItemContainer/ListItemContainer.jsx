@@ -5,15 +5,12 @@ import ListItem from "../ListItem/ListItem";
 import "./listItemcontainer.scss";
 
 const ListItemContainer = () => {
-  const listItem = useSelector((state) => state.lists.lists);
-  // console.log(listItem);
+  const store = useSelector((state) => state.lists.lists);
 
   return (
     <div className="listitemcontainer">
-      {listItem?.length > 0 &&
-        listItem.map((item) => (
-          <ListItem key={item.id} name={item.name} number={item.number} listItemIsActive={item.listItemIsActive} />
-        ))}
+      {store?.length > 0 &&
+        store.map((item) => <ListItem key={item.listId} list={item.list} listItemIsActive={item.listItemIsActive} />)}
     </div>
   );
 };

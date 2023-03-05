@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import TaskItem from "../TaskItem/TaskItem";
 
 import "./listitem.scss";
 
-const ListItem = ({ name, number }) => {
+const ListItem = ({ list }) => {
   //todo принимаем listItemIsActive
+  const store = useSelector((state) => state.lists.lists);
   const [listItemIsActive, setListItemIsActive] = useState(false);
 
-  const listItemHandleClick = (e) => {
-    // console.log("button", e.target);
+  const buttonRef = useRef();
+
+  const listItemHandleClick = () => {
     if (!listItemIsActive) {
-      e.target.classList.add("listitem_active");
+      buttonRef.current.classList.add("listitem_active");
     } else {
-      e.target.classList.remove("listitem_active");
+      buttonRef.current.classList.remove("listitem_active");
     }
     setListItemIsActive(!listItemIsActive); //todo изменить в Redux
   };
 
   return (
     <div className="listitem">
-      <button className="listitem__button" type="button" onClick={listItemHandleClick}>
-        <p className="listitem__name">{name}</p>
-        <p className="listitem__number">{number}</p>
+      <button className="listitem__button" type="button" onClick={listItemHandleClick} ref={buttonRef}>
+        <span className="listitem__name">{list}</span>
+        <span className="listitem__number">{store[0].tasks.length}</span>
       </button>
       {listItemIsActive && <TaskItem />}
     </div>

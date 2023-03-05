@@ -7,38 +7,27 @@ import ListItemContainer from "../ListItemContainer/ListItemContainer";
 import "./appcontainer.scss";
 
 const AppContainer = () => {
-  const [name, setName] = useState("");
+  const [list, setList] = useState("");
   // const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
-  const addItem = (e) => {
+  const addListItem = (e) => {
     e.preventDefault();
-    if (name.trim()) {
-      dispatch(addList({ name }));
-      console.log("New list:", name);
+    if (list.trim()) {
+      dispatch(addList({ list }));
+      // console.log("New list:", list);
     } else {
       console.log("Please enter new list");
     }
-    setName("");
+    setList("");
   };
-
-  // const addItem = (e) => {
-  //   e.preventDefault();
-  //   if (inputRef.current.value.trim()) {
-  //     dispatch(addList({ inputValue }));
-  //     console.log("New list:", inputRef.current.value);
-  //   } else {
-  //     console.log("Please enter new list");
-  //   }
-  //   // setName("");
-  // };
 
   return (
     <div className="appcontainer">
       <h1 className="app__title">My Lists</h1>
       {/* <StyledGlobal /> */}
-      <Form value={name} setValue={setName} placeholder="New list" buttonName="+ Add" subbitClickHandle={addItem} />
+      <Form value={list} setValue={setList} placeholder="New list" buttonName="+ Add" submitClickHandle={addListItem} />
       {/* <Form buttonName="+ Add" subbitClickHandle={addItem} inputRef={inputRef} /> */}
       <ListItemContainer />
       {/* <ListItem name="name" number="number" /> */}

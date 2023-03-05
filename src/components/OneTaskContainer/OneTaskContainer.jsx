@@ -18,11 +18,12 @@ function OneTaskContainer({ taskList, setTaskList }) {
       {taskList.map((item) => {
         return (
           <OneTask
-            key={item.id}
-            text={item.text}
-            isChecked={item.isChecked}
-            id={item.id}
+            key={item.taskId}
+            text={item.task}
+            isChecked={item.taskIsChecked}
+            id={item.taskId}
             toggleTaskChecked={toggleTaskChecked}
+            // toggleTaskChecked={toggleTaskChecked(item.id)}
           />
         );
       })}
