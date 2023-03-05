@@ -16,7 +16,7 @@ const listSlice = createSlice({
         tasks: [], //todo отдельный reducer addList?
         unputIsActive: false,
         listItemIsActive: false, //todo менять здесь
-        //! setlocalStorage
+        //! setlocalStorage useEffect in appContainer
       });
     },
     addTaskToList(state, action) {
