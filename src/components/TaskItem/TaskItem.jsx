@@ -7,7 +7,7 @@ import OneTaskContainer from "../OneTaskContainer/OneTaskContainer";
 
 import "./taskitem.scss";
 
-const TaskItem = () => {
+const TaskItem = ({ listId }) => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state.lists.lists);
   console.log("store:", store);
@@ -16,6 +16,8 @@ const TaskItem = () => {
   const [task, setTask] = useState("");
   const inputRef = useRef();
   const [taskItemIsActive, setTaskItemIsActive] = useState(false);
+
+  const list = store.find((item) => item.listId === listId);
 
   // const [taskList, setTaskList] = useState(() => {
   //   //todo нужно поднимать
@@ -40,7 +42,7 @@ const TaskItem = () => {
   const addTaskItem = (e) => {
     e.preventDefault();
     if (task.trim()) {
-      dispatch(addTaskToList({ task }));
+      dispatch(addTaskToList({ task })); //todo нужно в payload передавать taskId
     } else {
       console.log("Please enter new task");
     }
@@ -84,8 +86,10 @@ const TaskItem = () => {
         />
       )}
       {/* <OneTaskContainer taskList={taskList} setTaskList={setTaskList} /> */}
-      <OneTaskContainer taskList={store[0].tasks} />
+      {/* <OneTaskContainer taskList={store[0].tasks} /> */}
+      <OneTaskContainer taskList={list.tasks} />
     </div>
+    //todo здесь нужно передавать нужный tasklist или выше
   );
 };
 

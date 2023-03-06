@@ -21,11 +21,27 @@ const listSlice = createSlice({
     },
     addTaskToList(state, action) {
       state.lists
-        .find((item) => item.id === action.payload.listId)
+        .find((item) => item.listId !== action.payload.listId) //!потом переделать на ===
         .tasks.push({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
 
       // state.lists.tasks.push({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
       // state.lists.push(1);
+    },
+    toggleTaskIsChecked(state, action) {
+      const list = state.lists.find((item) => item.listId === action.payload.listId);
+      const toggledTask = list.find((task) => task.taskId === action.payload.taskId);
+      toggledTask.taskIsChecked = !toggledTask.taskIsChecked;
+
+      //   setTaskList(
+      //     taskList.map((item) => {
+      //       if (item.id !== id) return item;
+      //       return { ...item, isChecked: !item.isChecked };
+      //     })
+      //   );
+    },
+    removeTask(state, action) {
+      const list = state.lists.find((item) => item.listId === action.payload.listId);
+      list.tasks = list.tasks.filter((task) => task.taskId !== action.payload.taskId);
     },
 
     toggleListItemIsActive(state, action) {},
@@ -38,6 +54,6 @@ const listSlice = createSlice({
   },
 });
 
-export const { addList, addTaskToList, toggleListItemIsActive } = listSlice.actions;
+export const { addList, addTaskToList, toggleTaskIsChecked, toggleListItemIsActive, removeTask } = listSlice.actions;
 
 export default listSlice.reducer;

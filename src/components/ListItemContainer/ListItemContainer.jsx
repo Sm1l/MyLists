@@ -10,7 +10,9 @@ const ListItemContainer = () => {
   return (
     <div className="listitemcontainer">
       {store?.length > 0 &&
-        store.map((item) => <ListItem key={item.listId} list={item.list} listItemIsActive={item.listItemIsActive} />)}
+        store.map((item) => (
+          <ListItem key={item.listId} list={item.list} listItemIsActive={item.listItemIsActive} listId={item.listId} />
+        ))}
     </div>
   );
 };

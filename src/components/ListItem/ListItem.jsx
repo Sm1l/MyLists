@@ -5,7 +5,7 @@ import TaskItem from "../TaskItem/TaskItem";
 
 import "./listitem.scss";
 
-const ListItem = ({ list }) => {
+const ListItem = ({ list, listId }) => {
   //todo принимаем listItemIsActive
   const store = useSelector((state) => state.lists.lists);
   const [listItemIsActive, setListItemIsActive] = useState(false);
@@ -27,7 +27,7 @@ const ListItem = ({ list }) => {
         <span className="listitem__name">{list}</span>
         <span className="listitem__number">{store[0].tasks.length}</span>
       </button>
-      {listItemIsActive && <TaskItem />}
+      {listItemIsActive && <TaskItem listId={listId} />}
     </div>
   );
 };
