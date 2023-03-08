@@ -13,7 +13,7 @@ const listSlice = createSlice({
       state.lists.push({
         list: action.payload.list,
         listId: createId(),
-        tasks: [], //todo отдельный reducer addList?
+        tasks: [],
         unputIsActive: false,
         listItemIsActive: false, //todo менять здесь
         //! setlocalStorage useEffect in appContainer
@@ -21,8 +21,9 @@ const listSlice = createSlice({
     },
     addTaskToList(state, action) {
       state.lists
-        .find((item) => item.listId !== action.payload.listId) //!потом переделать на ===
-        .tasks.push({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
+        .find((item) => item.listId === action.payload.listId)
+        .tasks.unshift({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
+      //!тяжело
 
       // state.lists.tasks.push({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
       // state.lists.push(1);
@@ -39,12 +40,14 @@ const listSlice = createSlice({
       //     })
       //   );
     },
+    toggleInputIsActive(state, action) {},
+
+    toggleListItemIsActive(state, action) {},
+
     removeTask(state, action) {
       const list = state.lists.find((item) => item.listId === action.payload.listId);
       list.tasks = list.tasks.filter((task) => task.taskId !== action.payload.taskId);
     },
-
-    toggleListItemIsActive(state, action) {},
 
     // checkListItemIsActive()
 
@@ -54,6 +57,7 @@ const listSlice = createSlice({
   },
 });
 
-export const { addList, addTaskToList, toggleTaskIsChecked, toggleListItemIsActive, removeTask } = listSlice.actions;
+export const { addList, addTaskToList, toggleTaskIsChecked, toggleInputIsActive, toggleListItemIsActive, removeTask } =
+  listSlice.actions;
 
 export default listSlice.reducer;

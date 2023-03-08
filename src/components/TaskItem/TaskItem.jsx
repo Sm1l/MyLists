@@ -10,14 +10,18 @@ import "./taskitem.scss";
 const TaskItem = ({ listId }) => {
   const dispatch = useDispatch();
   const store = useSelector((state) => state.lists.lists);
-  console.log("store:", store);
-  console.log("store.tasks:", store[0].tasks);
+  const listItem = store.find((item) => item.listId === listId);
+
+  // console.log("listItem: ", listItem);
+
+  // console.log("store:", store);
+  // console.log("store.tasks:", store[0].tasks);
 
   const [task, setTask] = useState("");
   const inputRef = useRef();
-  const [taskItemIsActive, setTaskItemIsActive] = useState(false);
+  const [taskItemIsActive, setTaskItemIsActive] = useState(false); //!вместо этого использовать store. dispatch
 
-  const list = store.find((item) => item.listId === listId);
+  // const list = store.find((item) => item.listId === listId);
 
   // const [taskList, setTaskList] = useState(() => {
   //   //todo нужно поднимать
@@ -42,11 +46,12 @@ const TaskItem = ({ listId }) => {
   const addTaskItem = (e) => {
     e.preventDefault();
     if (task.trim()) {
-      dispatch(addTaskToList({ task })); //todo нужно в payload передавать taskId
+      dispatch(addTaskToList({ task, listId })); //todo нужно в payload передавать taskId
     } else {
       console.log("Please enter new task");
     }
     setTask("");
+    setTaskItemIsActive(false);
     //!isActive=false
   };
 
@@ -87,7 +92,7 @@ const TaskItem = ({ listId }) => {
       )}
       {/* <OneTaskContainer taskList={taskList} setTaskList={setTaskList} /> */}
       {/* <OneTaskContainer taskList={store[0].tasks} /> */}
-      <OneTaskContainer taskList={list.tasks} />
+      <OneTaskContainer listId={listId} />
     </div>
     //todo здесь нужно передавать нужный tasklist или выше
   );

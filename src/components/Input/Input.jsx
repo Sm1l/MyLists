@@ -7,7 +7,7 @@ const Input = ({ value, setValue, placeholder, inputRef }) => {
     if (setValue) {
       setValue(e.target.value);
     }
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   return (
     <>
