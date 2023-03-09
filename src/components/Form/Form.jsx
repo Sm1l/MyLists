@@ -1,10 +1,11 @@
+//*react
 import React from "react";
-
+//*components
 import Button from "../Button/Button";
-// import Button2 from "../Button/Button2";
-
-import "./form.scss";
 import Input from "../Input/Input";
+// import Button2 from "../Button/Button2";
+//*scss
+import "./form.scss";
 
 const Form = ({ value, setValue, buttonName, placeholder, submitClickHandle, inputRef }) => {
   return (

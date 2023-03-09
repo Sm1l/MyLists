@@ -1,5 +1,6 @@
+//*react
 import React from "react";
-// import StyledButton from "./StyledButton";
+//*scss
 import "./button.scss";
 
 const Button = ({ name, type, value }) => {

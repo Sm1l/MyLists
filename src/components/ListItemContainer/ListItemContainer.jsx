@@ -1,21 +1,18 @@
+//*react
 import React from "react";
+//*redux
 import { useSelector } from "react-redux";
+//*components
 import ListItem from "../ListItem/ListItem";
-
+//*scss
 import "./listItemcontainer.scss";
 
-//*render ListItem
 const ListItemContainer = () => {
-  const store = useSelector((state) => state.lists.lists); 
-  // console.log(store, "store");
+  const store = useSelector((state) => state.lists.lists);
   //!id отсюда доставать?
   return (
     <div className="listitemcontainer">
-      {store?.length > 0 &&
-        store.map((item) => (
-          // <ListItem key={item.listId} list={item.list} listItemIsActive={item.listItemIsActive} listId={item.listId} />
-          <ListItem key={item.listId} listId={item.listId} />
-        ))}
+      {store?.length > 0 && store.map((item) => <ListItem key={item.listId} listId={item.listId} />)}
     </div>
   );
 };

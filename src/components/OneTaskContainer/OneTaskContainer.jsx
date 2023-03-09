@@ -1,30 +1,16 @@
+//*react
 import React from "react";
+//*redux
+import { useSelector } from "react-redux";
+//*components
 import OneTask from "../OneTask/OneTask";
-import { toggleTaskIsChecked } from "../../store/listSlice";
-
+//*scss
 import "./onetaskcontainer.scss";
-import { useSelector, useDispatch } from "react-redux";
 
 function OneTaskContainer({ listId }) {
   const store = useSelector((state) => state.lists.lists);
   const listItem = store.find((item) => item.listId === listId);
   const taskList = listItem.tasks;
-  // console.log("1", taskList);
-
-  // const dispatch = useDispatch();
-
-  // const toggleTask = () => {
-  //   dispatch(toggleTaskIsChecked({ listId }));
-  // };
-  //!!!!!
-  // const toggleTaskChecked = (id) => {
-  //   setTaskList(
-  //     taskList.map((item) => {
-  //       if (item.id !== id) return item;
-  //       return { ...item, isChecked: !item.isChecked };
-  //     })
-  //   );
-  // };
 
   return (
     <div className="onetaskcontainer">
@@ -35,9 +21,7 @@ function OneTaskContainer({ listId }) {
             task={item.task}
             isChecked={item.taskIsChecked}
             taskId={item.taskId}
-            // toggleTaskChecked={toggleTask}
             listId={listId}
-            // toggleTaskChecked={toggleTaskChecked(item.id)}
           />
         );
       })}

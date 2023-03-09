@@ -1,9 +1,11 @@
+//*react
+import React from "react";
+//*components
 import AppContainer from "../AppContainer/AppContainer";
-import Form from "../Form/Form";
-import ListItemContainer from "../ListItemContainer/ListItemContainer";
+//*scss
+import "./app.scss";
 // import StyledApp from "./StyledApp";
 // import StyledGlobal from "./StyledGlobal";
-import "./app.scss";
 
 function App() {
   return (

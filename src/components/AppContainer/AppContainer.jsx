@@ -1,14 +1,16 @@
-import React, { useRef, useState } from "react";
+//*react
+import React, { useState } from "react";
+//*redux
 import { useDispatch } from "react-redux";
+//*components
 import { addList } from "../../store/listSlice";
 import Form from "../Form/Form";
 import ListItemContainer from "../ListItemContainer/ListItemContainer";
-
+//*scss
 import "./appcontainer.scss";
 
 const AppContainer = () => {
   const [list, setList] = useState("");
-  // const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -16,7 +18,6 @@ const AppContainer = () => {
     e.preventDefault();
     if (list.trim()) {
       dispatch(addList({ list }));
-      // console.log("New list:", list);
     } else {
       console.log("Please enter new list");
     }
@@ -28,9 +29,7 @@ const AppContainer = () => {
       <h1 className="app__title">My Lists</h1>
       {/* <StyledGlobal /> */}
       <Form value={list} setValue={setList} placeholder="New list" buttonName="+ Add" submitClickHandle={addListItem} />
-      {/* <Form buttonName="+ Add" subbitClickHandle={addItem} inputRef={inputRef} /> */}
       <ListItemContainer />
-      {/* <ListItem name="name" number="number" /> */}
     </div>
   );
 };

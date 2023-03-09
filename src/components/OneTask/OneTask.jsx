@@ -1,7 +1,9 @@
+//*react
 import React from "react";
+//*redux
 import { toggleTaskIsChecked } from "../../store/listSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+//*scss
 import "./onetask.scss";
 
 function OneTask({ task, isChecked, taskId, listId }) {
@@ -13,7 +15,7 @@ function OneTask({ task, isChecked, taskId, listId }) {
   const dispatch = useDispatch();
 
   const toggleTask = () => {
-    dispatch(toggleTaskIsChecked({ taskId, listId })); //!разобраться
+    dispatch(toggleTaskIsChecked({ listId, taskId }));
   };
 
   return (
