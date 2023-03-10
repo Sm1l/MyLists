@@ -17,7 +17,7 @@ const ListItem = ({ listId }) => {
   const listItemHandleClick = () => {
     dispatch(toggleListItemIsActive({ listId }));
   };
-
+  //!при нажатии на listItem focus на Input!!!!
   return (
     <div className="listitem">
       <button

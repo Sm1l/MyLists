@@ -6,6 +6,7 @@
   border-radius: 15px;
   position: relative;
   background-color: $color-white;
+
   &__button {
     display: flex;
     border-radius: 15px;
@@ -23,8 +24,7 @@
   }
 
   &__name {
-    // position: relative;
-    // z-index: 0;
+    text-align: start;
   }
 
   &__number {
