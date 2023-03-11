@@ -13,8 +13,9 @@ function App() {
     // <StyledApp>
     <div className="app">
       <AppContainer />
-      <Modal />
+      {/* <Modal /> */}
     </div>
+    //!вернуть modal
     // </StyledApp>
   );
 }
