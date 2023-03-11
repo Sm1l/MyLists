@@ -56,13 +56,15 @@ const listSlice = createSlice({
       state.lists.map((item) => (item.inputIsActive = false)); //*закрываем input
     },
 
-    removeCheckedTasks(state, action) {
+    cleanCheckedTasks(state, action) {
       const uncheckedTasks = state.lists
         .find((item) => item.listId === action.payload.listId)
         .tasks.filter((task) => task.taskIsChecked === false);
       state.lists.find((item) => item.listId === action.payload.listId).tasks = [];
       state.lists.find((item) => item.listId === action.payload.listId).tasks.push(...uncheckedTasks);
     },
+
+    // hasAnyCheckedTask(state, action) {},
   },
 });
 
@@ -72,7 +74,8 @@ export const {
   toggleTaskIsChecked,
   toggleInputIsActive,
   toggleListItemIsActive,
-  removeCheckedTasks,
+  cleanCheckedTasks,
+  // hasAnyCheckedTask,
 } = listSlice.actions;
 
 export default listSlice.reducer;
