@@ -4,7 +4,7 @@ import createId from "../helpers/createId";
 const listSlice = createSlice({
   name: "list",
   initialState: {
-    lists: [],
+    lists: JSON.parse(localStorage.getItem("MyLists")) || [],
   },
   reducers: {
     addList(state, action) {
@@ -14,7 +14,6 @@ const listSlice = createSlice({
         tasks: [],
         inputIsActive: false,
         listItemIsActive: false,
-        //! setlocalStorage useEffect in appContainer
       });
     },
     addTaskToList(state, action) {

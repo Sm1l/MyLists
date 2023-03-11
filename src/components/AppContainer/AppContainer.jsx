@@ -1,7 +1,7 @@
 //*react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //*redux
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //*components
 import { addList } from "../../store/listSlice";
 import Form from "../Form/Form";
@@ -11,8 +11,19 @@ import "./appcontainer.scss";
 
 const AppContainer = () => {
   const [list, setList] = useState("");
+  const store = useSelector((state) => state.lists.lists);
 
   const dispatch = useDispatch();
+
+  //*запись в localstorage
+
+  useEffect(() => {
+    console.log("useEffect localStorage");
+    localStorage.setItem("MyLists", JSON.stringify(store));
+    return () => {
+      console.log("useEffect return localStorage");
+    };
+  }, [store]);
 
   const addListItem = (e) => {
     e.preventDefault();
