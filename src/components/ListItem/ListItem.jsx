@@ -64,7 +64,7 @@ const ListItem = ({ listId }) => {
         )}
         {storeListItemIsActive && listItem.tasks.length === 0 && (
           <button className="listitem__clean" type="button" onClick={cleanListHandleClick}>
-            Clean List
+            Delete List
           </button>
         )}
       </div>
