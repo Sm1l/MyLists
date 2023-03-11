@@ -11,24 +11,15 @@ import "./listitem.scss";
 const ListItem = ({ listId }) => {
   const store = useSelector((state) => state.lists.lists);
   const listItem = store.find((item) => item.listId === listId);
-  // console.log(listItem.tasks.some((item) => item.taskIsChecked === true));
   const storeListItemIsActive = listItem.listItemIsActive;
   const dispatch = useDispatch();
 
   //* появление Clean
   const hasAnyCheckedTask = () => {
-    // console.log(listItem.tasks.some((item) => item.taskIsChecked === true));
-    return listItem.tasks.some((item) => item.taskIsChecked === true);
-  };
-
-  const cleanButtonIsActive = () => {
-    if (storeListItemIsActive && listItem.tasks.length === 0) {
+    if (!listItem.tasks) {
+      console.log(false);
       return false;
-    } else if (!hasAnyCheckedTask()) {
-      return false;
-    } else {
-      return storeListItemIsActive && listItem.tasks.length;
-    }
+    } else return listItem.tasks.some((item) => item.taskIsChecked === true);
   };
 
   const toggleListItemHandleClick = () => {
@@ -52,7 +43,7 @@ const ListItem = ({ listId }) => {
         <span className="listitem__name">{listItem.list}</span>
         <span className="listitem__number">{listItem.tasks.length}</span>
 
-        {cleanButtonIsActive() && (
+        {hasAnyCheckedTask() && (
           <button className="listitem__clean" type="button" onClick={cleanTasksHandleClick}>
             Clean
           </button>
