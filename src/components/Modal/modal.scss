@@ -1,0 +1,132 @@
+@import "../../abstracts/variables.scss";
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $color-black-op04;
+
+  &__container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 18px;
+  }
+  &__checkboxcontainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+  }
+
+  &__checkbox {
+    appearance: none;
+    visibility: hidden;
+    position: absolute;
+  }
+
+  &__customcheckbox {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20%;
+    border: 2px solid $color-red;
+    top: 0px;
+    left: 0px;
+    cursor: pointer;
+    transition: 500ms ease-out;
+
+    &:hover {
+      background-color: $color-light-red;
+      transition: 500ms ease-out;
+    }
+
+    &:has(input:checked) {
+      // background-color: $color-red;
+      transition: 500ms ease-out;
+    }
+
+    //  & + input:checked {
+    //    background-color: $color-black;
+    //    color: $color-red;
+    //  }
+
+    &:has(input:checked)::after {
+      content: "";
+      width: 3px;
+      min-height: 24px;
+      border-radius: 1px;
+      transform: rotate(35deg);
+      background-color: $color-red;
+      position: absolute;
+      top: -8px;
+      left: 14px;
+    }
+
+    &:has(input:checked)::before {
+      content: "";
+      width: 3px;
+      min-height: 12px;
+      border-radius: 1px;
+      transform: rotate(-45deg);
+      background-color: $color-red;
+      position: absolute;
+      top: 3px;
+      left: 4px;
+    }
+  }
+
+  &__label {
+    font-size: 12px;
+    color: $color-red;
+    padding-left: 30px;
+    cursor: pointer;
+  }
+
+  &__checkbox {
+  }
+
+  &__buttonscontainer {
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  &__button {
+    font: inherit;
+    padding: 10px;
+    border-radius: 12px;
+    color: $color-white;
+    width: 100px;
+    transition: background-color 500ms ease-out;
+
+    &_yes {
+      background-color: $color-green;
+      &:hover {
+        background-color: $color-dark-green;
+        transition: background-color 500ms ease-out;
+      }
+    }
+
+    &_no {
+      background-color: $color-light-red;
+      &:hover {
+        background-color: $color-red;
+        transition: background-color 500ms ease-out;
+      }
+    }
+  }
+}

@@ -3,14 +3,15 @@
 @import "../../base/font.scss";
 @import "../../base/focus.scss";
 
-// .app {
-//   width: 100vw;
-//   height: 100vh;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: flex-start;
-//   justify-content: center;
-//   background-color: $color-pink;
-//   padding: 24px 16px;
-//   gap: 20px;
-// }
+.app {
+  position: relative;
+  //   width: 100vw;
+  //   height: 100vh;
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: flex-start;
+  //   justify-content: center;
+  //   background-color: $color-pink;
+  //   padding: 24px 16px;
+  //   gap: 20px;
+}

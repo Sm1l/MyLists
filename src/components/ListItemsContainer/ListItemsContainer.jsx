@@ -5,16 +5,16 @@ import { useSelector } from "react-redux";
 //*components
 import ListItem from "../ListItem/ListItem";
 //*scss
-import "./listItemcontainer.scss";
+import "./listItemscontainer.scss";
 
-const ListItemContainer = () => {
+const ListItemsContainer = () => {
   const store = useSelector((state) => state.lists.lists);
   //!id отсюда доставать?
   return (
-    <div className="listitemcontainer">
+    <div className="listitemscontainer">
       {store?.length > 0 && store.map((item) => <ListItem key={item.listId} listId={item.listId} />)}
     </div>
   );
 };
 
-export default ListItemContainer;
+export default ListItemsContainer;

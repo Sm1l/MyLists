@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 //*components
 import { addList } from "../../store/listSlice";
 import Form from "../Form/Form";
-import ListItemContainer from "../ListItemContainer/ListItemContainer";
+import ListItemsContainer from "../ListItemsContainer/ListItemsContainer";
 //*scss
 import "./appcontainer.scss";
 
@@ -40,7 +40,7 @@ const AppContainer = () => {
       <h1 className="app__title">My Lists</h1>
       {/* <StyledGlobal /> */}
       <Form value={list} setValue={setList} placeholder="New list" buttonName="+ Add" submitClickHandle={addListItem} />
-      <ListItemContainer />
+      <ListItemsContainer />
     </div>
   );
 };

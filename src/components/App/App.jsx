@@ -2,6 +2,7 @@
 import React from "react";
 //*components
 import AppContainer from "../AppContainer/AppContainer";
+import Modal from "../Modal/Modal";
 //*scss
 import "./app.scss";
 // import StyledApp from "./StyledApp";
@@ -12,6 +13,7 @@ function App() {
     // <StyledApp>
     <div className="app">
       <AppContainer />
+      <Modal />
     </div>
     // </StyledApp>
   );
