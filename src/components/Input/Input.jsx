@@ -5,10 +5,9 @@ import "./input.scss";
 
 const Input = ({ value, setValue, placeholder, inputRef }) => {
   const inputHandleChange = (e) => {
-    if (setValue) {
-      setValue(e.target.value);
-    }
+    setValue(e.target.value);
   };
+
   return (
     <>
       <input

@@ -16,15 +16,15 @@ const TaskItem = ({ listId }) => {
   const storeInputIsActive = store.find((item) => item.listId === listId).inputIsActive;
 
   const [task, setTask] = useState("");
-  const inputRef = useRef();
+  const inputRef = useRef(null);
 
-  const taskItemHandleClick = (e) => {
-    if (!storeInputIsActive) {
-      e.target.classList.add("taskitem_active");
-    } else {
-      e.target.classList.remove("taskitem_active");
-    }
+  //* toggle input + input focus
+  const taskItemHandleClick = () => {
     dispatch(toggleInputIsActive({ listId }));
+    !storeInputIsActive &&
+      setTimeout(() => {
+        inputRef.current.focus();
+      }, 0);
   };
 
   //* добавление task
