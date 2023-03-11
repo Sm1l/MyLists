@@ -4,7 +4,7 @@ import createId from "../helpers/createId";
 const listSlice = createSlice({
   name: "list",
   initialState: {
-    lists: JSON.parse(localStorage.getItem("MyLists")) || [],
+    lists: JSON.parse(localStorage?.getItem("MyLists")) || [],
   },
   reducers: {
     addList(state, action) {
@@ -56,14 +56,23 @@ const listSlice = createSlice({
       state.lists.map((item) => (item.inputIsActive = false)); //*закрываем input
     },
 
-    removeTask(state, action) {
-      const list = state.lists.find((item) => item.listId === action.payload.listId);
-      list.tasks = list.tasks.filter((task) => task.taskId !== action.payload.taskId);
+    removeCheckedTasks(state, action) {
+      const uncheckedTasks = state.lists
+        .find((item) => item.listId === action.payload.listId)
+        .tasks.filter((task) => task.taskIsChecked === false);
+      state.lists.find((item) => item.listId === action.payload.listId).tasks = [];
+      state.lists.find((item) => item.listId === action.payload.listId).tasks.push(...uncheckedTasks);
     },
   },
 });
 
-export const { addList, addTaskToList, toggleTaskIsChecked, toggleInputIsActive, toggleListItemIsActive, removeTask } =
-  listSlice.actions;
+export const {
+  addList,
+  addTaskToList,
+  toggleTaskIsChecked,
+  toggleInputIsActive,
+  toggleListItemIsActive,
+  removeCheckedTasks,
+} = listSlice.actions;
 
 export default listSlice.reducer;

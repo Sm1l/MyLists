@@ -18,10 +18,10 @@ const AppContainer = () => {
   //*запись в localstorage
 
   useEffect(() => {
-    console.log("useEffect localStorage");
+    // console.log("useEffect localStorage");
     localStorage.setItem("MyLists", JSON.stringify(store));
     return () => {
-      console.log("useEffect return localStorage");
+      // console.log("useEffect return localStorage");
     };
   }, [store]);
 

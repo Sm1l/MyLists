@@ -18,6 +18,7 @@
     color: $color-white;
     cursor: pointer;
     opacity: 1;
+    min-width: 40px;
 
     &:hover {
       background-color: $color-dark-green;
