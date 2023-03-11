@@ -2,7 +2,7 @@
 import React from "react";
 //*redux
 import { useDispatch, useSelector } from "react-redux";
-import { toggleListItemIsActive, cleanCheckedTasks } from "../../store/listSlice";
+import { toggleListItemIsActive, cleanCheckedTasks, deleteList } from "../../store/listSlice";
 //*components
 import TaskItem from "../TaskItem/TaskItem";
 //*scss
@@ -17,20 +17,34 @@ const ListItem = ({ listId }) => {
   //* появление Clean
   const hasAnyCheckedTask = () => {
     if (!listItem.tasks) {
-      console.log(false);
       return false;
     } else return listItem.tasks.some((item) => item.taskIsChecked === true);
+  };
+
+  const cleanButtonIsActive = () => {
+    if (storeListItemIsActive && listItem.tasks.length === 0) {
+      return false;
+    } else if (!hasAnyCheckedTask()) {
+      return false;
+    } else {
+      return storeListItemIsActive && listItem.tasks.length;
+    }
   };
 
   const toggleListItemHandleClick = () => {
     dispatch(toggleListItemIsActive({ listId }));
   };
-  //!при нажатии на listItem focus на Input!!!!
 
   const cleanTasksHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanCheckedTasks({ listId }));
+  };
+
+  const cleanListHandleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(deleteList({ listId }));
   };
 
   return (
@@ -43,9 +57,14 @@ const ListItem = ({ listId }) => {
         <span className="listitem__name">{listItem.list}</span>
         <span className="listitem__number">{listItem.tasks.length}</span>
 
-        {hasAnyCheckedTask() && (
+        {cleanButtonIsActive() && (
           <button className="listitem__clean" type="button" onClick={cleanTasksHandleClick}>
             Clean
+          </button>
+        )}
+        {storeListItemIsActive && listItem.tasks.length === 0 && (
+          <button className="listitem__clean" type="button" onClick={cleanListHandleClick}>
+            Clean List
           </button>
         )}
       </div>
