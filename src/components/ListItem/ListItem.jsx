@@ -2,10 +2,12 @@
 import React from "react";
 //*redux
 import { useDispatch } from "react-redux";
-import { toggleListItemIsActive, deleteList } from "../../store/listSlice";
+import { toggleListItemIsActive, deleteList, cleanCheckedTasks } from "../../store/listSlice";
 import { toggleModalIsVisible } from "../../store/modalSlice";
 //*components
 import TaskItem from "../TaskItem/TaskItem";
+//*helpers
+import { getCookie } from "../../helpers/cookie";
 //*scss
 import "./listitem.scss";
 
@@ -35,12 +37,16 @@ const ListItem = ({ list, setAppList }) => {
     dispatch(toggleListItemIsActive({ listId }));
   };
 
-  //*открытие модального окна очищения Task
+  //*открытие модального окна очищения Task (наличие/отсутствие cookie)
   const cleanTasksHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     setAppList(list);
-    dispatch(toggleModalIsVisible());
+    if (getCookie("clearListWithoutRequest") === undefined) {
+      dispatch(toggleModalIsVisible());
+    } else {
+      dispatch(cleanCheckedTasks({ listId }));
+    }
   };
 
   //*удаление List
