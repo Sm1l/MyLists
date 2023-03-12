@@ -9,12 +9,12 @@ import "./listItemscontainer.scss";
 
 const ListItemsContainer = () => {
   const store = useSelector((state) => state.lists.lists);
-  //!id отсюда доставать?
   return (
     <div className="listitemscontainer">
-      {store?.length > 0 && store.map((item) => <ListItem key={item.listId} listId={item.listId} />)}
+      {store?.length > 0 && store.map((item) => <ListItem key={item.listId} list={item} />)}
     </div>
   );
 };
+//!list прокинуть
 
 export default ListItemsContainer;

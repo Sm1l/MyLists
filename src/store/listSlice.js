@@ -20,24 +20,15 @@ const listSlice = createSlice({
       state.lists
         .find((item) => item.listId === action.payload.listId)
         .tasks.unshift({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
-      //!тяжело
-
-      // state.lists.tasks.push({ task: action.payload.task, taskIsChecked: false, taskId: createId() });
-      // state.lists.push(1);
     },
+
     toggleTaskIsChecked(state, action) {
-      // const list = state.lists.find((item) => item.listId === action.payload.listId);
-      // console.log("list: ", list);
-      // const toggledTask = list.find((task) => task.taskId === action.payload.taskId);
-      // toggledTask.taskIsChecked = !toggledTask.taskIsChecked;
-
-      state.lists
+      const list = state.lists
         .find((item) => item.listId === action.payload.listId)
-        .tasks.find((task) => task.taskId === action.payload.taskId).taskIsChecked = !state.lists
-        .find((item) => item.listId === action.payload.listId)
-        .tasks.find((task) => task.taskId === action.payload.taskId).taskIsChecked;
-      //!это ужас
+        .tasks.find((task) => task.taskId === action.payload.taskId);
+      list.taskIsChecked = !list.taskIsChecked;
     },
+
     toggleInputIsActive(state, action) {
       state.lists.find((item) => item.listId === action.payload.listId).inputIsActive = !state.lists.find(
         (item) => item.listId === action.payload.listId
@@ -57,15 +48,11 @@ const listSlice = createSlice({
     },
 
     cleanCheckedTasks(state, action) {
-      const uncheckedTasks = state.lists
-        .find((item) => item.listId === action.payload.listId)
-        .tasks.filter((task) => task.taskIsChecked === false);
-      state.lists.find((item) => item.listId === action.payload.listId).tasks = [];
-      state.lists.find((item) => item.listId === action.payload.listId).tasks.push(...uncheckedTasks);
+      const list = state.lists.find((item) => item.listId === action.payload.listId);
+      list.tasks = list.tasks.filter((task) => !task.taskIsChecked);
     },
 
     deleteList(state, action) {
-      console.log("cleanList");
       state.lists = state.lists.filter((list) => list.listId !== action.payload.listId);
     },
   },

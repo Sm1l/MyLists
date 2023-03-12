@@ -1,19 +1,19 @@
 //*react
 import React, { useState, useRef } from "react";
 //*redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addTaskToList } from "../../store/listSlice";
 import { toggleInputIsActive } from "../../store/listSlice";
 //*components
 import Form from "../Form/Form";
-import OneTaskContainer from "../OneTaskContainer/OneTaskContainer";
+import TasksContainer from "../TasksContainer/TasksContainer";
 //*scss
 import "./taskitem.scss";
 
-const TaskItem = ({ listId }) => {
+const TaskItem = ({ list }) => {
   const dispatch = useDispatch();
-  const store = useSelector((state) => state.lists.lists);
-  const storeInputIsActive = store.find((item) => item.listId === listId).inputIsActive;
+  const storeInputIsActive = list.inputIsActive;
+  const listId = list.listId;
 
   const [task, setTask] = useState("");
   const inputRef = useRef(null);
@@ -28,7 +28,6 @@ const TaskItem = ({ listId }) => {
   };
 
   //* добавление task
-
   const addTaskItem = (e) => {
     e.preventDefault();
     if (task.trim()) {
@@ -55,7 +54,7 @@ const TaskItem = ({ listId }) => {
           inputRef={inputRef}
         />
       )}
-      <OneTaskContainer listId={listId} />
+      <TasksContainer list={list} />
     </div>
   );
 };

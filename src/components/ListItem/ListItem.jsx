@@ -1,47 +1,51 @@
 //*react
 import React from "react";
 //*redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleListItemIsActive, cleanCheckedTasks, deleteList } from "../../store/listSlice";
+import { toggleModalIsVisible } from "../../store/modalSlice";
 //*components
 import TaskItem from "../TaskItem/TaskItem";
 //*scss
 import "./listitem.scss";
 
-const ListItem = ({ listId }) => {
-  const store = useSelector((state) => state.lists.lists);
-  const listItem = store.find((item) => item.listId === listId);
-  const storeListItemIsActive = listItem.listItemIsActive;
+const ListItem = ({ list }) => {
+  const storeListItemIsActive = list.listItemIsActive;
+  const listId = list.listId;
   const dispatch = useDispatch();
 
-  //* появление Clean
+  //* появление кнопки Clean
   const hasAnyCheckedTask = () => {
-    if (!listItem.tasks) {
+    if (!list.tasks) {
       return false;
-    } else return listItem.tasks.some((item) => item.taskIsChecked === true);
+    } else return list.tasks.some((item) => item.taskIsChecked === true);
   };
 
   const cleanButtonIsActive = () => {
-    if (storeListItemIsActive && listItem.tasks.length === 0) {
+    if (storeListItemIsActive && list.tasks.length === 0) {
       return false;
     } else if (!hasAnyCheckedTask()) {
       return false;
     } else {
-      return storeListItemIsActive && listItem.tasks.length;
+      return storeListItemIsActive && list.tasks.length;
     }
   };
-
+  //*toggle активного состояния List
   const toggleListItemHandleClick = () => {
     dispatch(toggleListItemIsActive({ listId }));
   };
 
+  //*очищение отмеченных Task
+  //! переделать на modal
   const cleanTasksHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(cleanCheckedTasks({ listId }));
+    dispatch(toggleModalIsVisible({ listId }));
+    // dispatch(cleanCheckedTasks({ listId }));
   };
 
-  const cleanListHandleClick = (e) => {
+  //*удаление List
+  const deleteListHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(deleteList({ listId }));
@@ -54,21 +58,21 @@ const ListItem = ({ listId }) => {
         type="button"
         onClick={toggleListItemHandleClick}
       >
-        <span className="listitem__name">{listItem.list}</span>
-        <span className="listitem__number">{listItem.tasks.length}</span>
+        <span className="listitem__name">{list.list}</span>
+        <span className="listitem__number">{list.tasks.length}</span>
 
         {cleanButtonIsActive() && (
           <button className="listitem__clean" type="button" onClick={cleanTasksHandleClick}>
             Clean
           </button>
         )}
-        {storeListItemIsActive && listItem.tasks.length === 0 && (
-          <button className="listitem__clean" type="button" onClick={cleanListHandleClick}>
+        {storeListItemIsActive && list.tasks.length === 0 && (
+          <button className="listitem__clean" type="button" onClick={deleteListHandleClick}>
             Delete List
           </button>
         )}
       </div>
-      {storeListItemIsActive && <TaskItem listId={listId} />}
+      {storeListItemIsActive && <TaskItem list={list} />}
     </div>
   );
 };
