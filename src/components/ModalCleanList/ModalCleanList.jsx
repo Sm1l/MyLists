@@ -1,19 +1,19 @@
 //*react
 import React from "react";
 //*redux
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleModalIsVisible } from "../../store/modalSlice";
 import { cleanCheckedTasks } from "../../store/listSlice";
+
 //*scss
 import "./modalcleanlist.scss";
 
-const ModalCleanList = ({ listId }) => {
-  const store = useSelector((state) => state.lists.lists);
-  const listItem = store.find((item) => item.listId === listId);
+const ModalCleanList = ({ list }) => {
+  const listId = list.listId;
   const dispatch = useDispatch();
 
   const closeModalHandleClick = () => {
-    dispatch(toggleModalIsVisible({}));
+    dispatch(toggleModalIsVisible());
   };
 
   //*очищение отмеченных Task
@@ -21,13 +21,13 @@ const ModalCleanList = ({ listId }) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(cleanCheckedTasks({ listId }));
+    dispatch(toggleModalIsVisible());
   };
 
   return (
     <div className="modalcleanlist">
       <div className="modalcleanlist__container">
-        {/* <p className="modalcleanlist__text">{`Do you want to remove all completed items from ${listItem.list}?`}</p> */}
-        <p className="modalcleanlist__text">{`Do you want to remove all completed items from To-Do?`}</p>
+        <p className="modalcleanlist__text">{`Do you want to remove all completed items from ${list.list}?`}</p>
         <div className="modalcleanlist__checkboxcontainer">
           <label className="modalcleanlist__customcheckbox">
             <input type="checkbox" className="modalcleanlist__checkbox" id="modalcleanlist__checkbox" />

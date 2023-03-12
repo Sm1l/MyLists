@@ -48,13 +48,13 @@
     transition: 500ms ease-out;
 
     &:hover {
-      background-color: $color-light-red;
-      transition: 500ms ease-out;
+      // background-color: $color-light-red;
+      // transition: 500ms ease-out;
     }
 
     &:has(input:checked) {
       // background-color: $color-red;
-      transition: 500ms ease-out;
+      // transition: 500ms ease-out;
     }
 
     //  & + input:checked {

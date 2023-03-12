@@ -2,14 +2,14 @@
 import React from "react";
 //*redux
 import { useDispatch } from "react-redux";
-import { toggleListItemIsActive, cleanCheckedTasks, deleteList } from "../../store/listSlice";
+import { toggleListItemIsActive, deleteList } from "../../store/listSlice";
 import { toggleModalIsVisible } from "../../store/modalSlice";
 //*components
 import TaskItem from "../TaskItem/TaskItem";
 //*scss
 import "./listitem.scss";
 
-const ListItem = ({ list }) => {
+const ListItem = ({ list, setAppList }) => {
   const storeListItemIsActive = list.listItemIsActive;
   const listId = list.listId;
   const dispatch = useDispatch();
@@ -35,13 +35,12 @@ const ListItem = ({ list }) => {
     dispatch(toggleListItemIsActive({ listId }));
   };
 
-  //*очищение отмеченных Task
-  //! переделать на modal
+  //*открытие модального окна очищения Task
   const cleanTasksHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(toggleModalIsVisible({ listId }));
-    // dispatch(cleanCheckedTasks({ listId }));
+    setAppList(list);
+    dispatch(toggleModalIsVisible());
   };
 
   //*удаление List

@@ -6,7 +6,7 @@ const modalSlice = createSlice({
     modalIsVisible: false,
   },
   reducers: {
-    toggleModalIsVisible(state, action) {
+    toggleModalIsVisible(state) {
       state.modalIsVisible = !state.modalIsVisible;
     },
   },

@@ -1,5 +1,5 @@
 //*react
-import React from "react";
+import React, { useState } from "react";
 //*redux
 import { useSelector } from "react-redux";
 //*components
@@ -12,12 +12,13 @@ import "./app.scss";
 
 function App() {
   const modalIsVisible = useSelector((state) => state.modal.modalIsVisible);
+  const [appList, setAppList] = useState({});
 
   return (
     // <StyledApp>
     <div className="app">
-      <AppContainer />
-      {modalIsVisible && <ModalCleanList />}
+      <AppContainer setAppList={setAppList} />
+      {modalIsVisible && <ModalCleanList list={appList} />}
     </div>
     // </StyledApp>
   );

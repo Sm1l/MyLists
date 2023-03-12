@@ -9,7 +9,7 @@ import ListItemsContainer from "../ListItemsContainer/ListItemsContainer";
 //*scss
 import "./appcontainer.scss";
 
-const AppContainer = () => {
+const AppContainer = ({ setAppList }) => {
   const [list, setList] = useState("");
   const store = useSelector((state) => state.lists.lists);
 
@@ -40,7 +40,7 @@ const AppContainer = () => {
       <h1 className="app__title">My Lists</h1>
       {/* <StyledGlobal /> */}
       <Form value={list} setValue={setList} placeholder="New list" buttonName="+ Add" submitClickHandle={addListItem} />
-      <ListItemsContainer />
+      <ListItemsContainer setAppList={setAppList} />
     </div>
   );
 };

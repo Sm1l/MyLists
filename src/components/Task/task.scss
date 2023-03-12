@@ -22,7 +22,7 @@
     transition: background-color 500ms ease-out;
 
     &:hover {
-      background-color: $color-black-op04;
+      // background-color: $color-black-op04;
       transition: background-color 500ms ease-out;
     }
 
@@ -75,8 +75,3 @@
     }
   }
 }
-
-// input:checked + p {
-//   text-decoration: line-through;
-//   color: $color-black-op04;
-// }

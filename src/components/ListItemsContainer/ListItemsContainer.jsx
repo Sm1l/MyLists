@@ -7,11 +7,11 @@ import ListItem from "../ListItem/ListItem";
 //*scss
 import "./listItemscontainer.scss";
 
-const ListItemsContainer = () => {
+const ListItemsContainer = ({ setAppList }) => {
   const store = useSelector((state) => state.lists.lists);
   return (
     <div className="listitemscontainer">
-      {store?.length > 0 && store.map((item) => <ListItem key={item.listId} list={item} />)}
+      {store?.length > 0 && store.map((item) => <ListItem key={item.listId} list={item} setAppList={setAppList} />)}
     </div>
   );
 };
