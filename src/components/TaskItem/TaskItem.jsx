@@ -7,6 +7,8 @@ import { toggleInputIsActive } from "../../store/listSlice";
 //*components
 import Form from "../Form/Form";
 import TasksContainer from "../TasksContainer/TasksContainer";
+//*framer-motion
+import { motion, AnimatePresence } from "framer-motion";
 //*scss
 import "./taskitem.scss";
 
@@ -17,6 +19,27 @@ const TaskItem = ({ list }) => {
 
   const [task, setTask] = useState("");
   const inputRef = useRef(null);
+
+  const taskItemVariants = {
+    animate: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        // type: "just",
+        // ease: "easeInOut",
+        duration: 0.5,
+      },
+    },
+    initial: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        // type: "just",
+        // ease: "easeInOut",
+        duration: 0.5,
+      },
+    },
+  };
 
   //* toggle input + input focus
   const taskItemHandleClick = () => {
@@ -40,22 +63,24 @@ const TaskItem = ({ list }) => {
   };
 
   return (
-    <div className="taskitem">
+    <motion.div className="taskitem" initial="initial" animate="animate" exit="initial" variants={taskItemVariants}>
       <button className="taskitem__button" type="button" onClick={taskItemHandleClick}>
         + List Item
       </button>
-      {storeInputIsActive && (
-        <Form
-          value={task}
-          setValue={setTask}
-          buttonName={"+"}
-          placeholder="New Item"
-          submitClickHandle={addTaskItem}
-          inputRef={inputRef}
-        />
-      )}
+      <AnimatePresence>
+        {storeInputIsActive && (
+          <Form
+            value={task}
+            setValue={setTask}
+            buttonName={"+"}
+            placeholder="New Item"
+            submitClickHandle={addTaskItem}
+            inputRef={inputRef}
+          />
+        )}
+      </AnimatePresence>
       <TasksContainer list={list} />
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,6 +1,9 @@
+@import "../../abstracts/variables.scss";
+
 .listitemscontainer {
   display: flex;
   flex-direction: column;
   gap: 14px;
   width: 100%;
+  background-color: $color-white;
 }
