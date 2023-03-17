@@ -18,9 +18,9 @@ function Task({ task, isChecked, taskId, listId }) {
   return (
     <motion.div
       className="task"
-      initial={{ opacity: 0, transition: { duration: 1 } }}
-      animate={{ opacity: 1, transition: { duration: 1 } }}
-      exit={{ opacity: 0, transition: { duration: 1 } }}
+      initial={{ opacity: 0, x: 1000, transition: { duration: 0.5 } }}
+      animate={{ opacity: 1, x: 0, transition: { duration: 0.5 } }}
+      exit={{ opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0, transition: { duration: 0.5 } }}
     >
       <label className="task__label">
         <input className="task__checkbox" id={taskId} type="checkbox" checked={isChecked} onChange={toggleTask} />
