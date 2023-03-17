@@ -2,6 +2,8 @@
 import React from "react";
 //*components
 import Task from "../Task/Task";
+//*framer-motion
+import { AnimatePresence } from "framer-motion";
 //*scss
 import "./taskscontainer.scss";
 
@@ -11,17 +13,19 @@ function TasksContainer({ list }) {
 
   return (
     <div className="taskscontainer">
-      {taskList?.map((item) => {
-        return (
-          <Task
-            key={item.taskId}
-            task={item.task}
-            isChecked={item.taskIsChecked}
-            taskId={item.taskId}
-            listId={listId}
-          />
-        );
-      })}
+      <AnimatePresence>
+        {taskList?.map((item) => {
+          return (
+            <Task
+              key={item.taskId}
+              task={item.task}
+              isChecked={item.taskIsChecked}
+              taskId={item.taskId}
+              listId={listId}
+            />
+          );
+        })}
+      </AnimatePresence>
     </div>
   );
 }

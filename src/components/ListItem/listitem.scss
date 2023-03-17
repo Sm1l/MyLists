@@ -19,7 +19,6 @@
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
-    // z-index: 10;
 
     &:hover {
       // color: $color-black-op04; //* firstmobile убирать hover
@@ -34,6 +33,8 @@
     opacity: 0.4;
   }
   &__clean {
+    position: absolute;
+    right: 20px;
     font: inherit;
     color: $color-white;
     background-color: transparent;

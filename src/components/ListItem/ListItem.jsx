@@ -93,7 +93,14 @@ const ListItem = ({ list, setAppList, i }) => {
   };
 
   return (
-    <motion.div className="listitem" variants={listItemVariants} initial="initial" animate="animate" custom={i}>
+    <motion.div
+      className="listitem"
+      variants={listItemVariants}
+      initial="initial"
+      animate="animate"
+      custom={i}
+      exit="initial"
+    >
       <div
         className={!storeListItemIsActive ? "listitem__button" : "listitem__button listitem_active"}
         type="button"
