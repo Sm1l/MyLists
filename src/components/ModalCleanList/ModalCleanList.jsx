@@ -6,6 +6,8 @@ import { toggleModalIsVisible } from "../../store/modalSlice";
 import { cleanCheckedTasks } from "../../store/listSlice";
 //*helpers
 import { setCookie, getCookie } from "../../helpers/cookie";
+//*framer-motion
+import { motion } from "framer-motion";
 //*scss
 import "./modalcleanlist.scss";
 
@@ -13,6 +15,30 @@ const ModalCleanList = ({ list }) => {
   const listId = list.listId;
   const dispatch = useDispatch();
   const [cookieIsChecked, setCookieIsChecked] = useState(false);
+
+  const overlayVariants = {
+    initial: { opacity: 0, transition: { duration: 0.5 } },
+    animate: { opacity: 1, transition: { duration: 0.5 } },
+  };
+
+  const modalVariants = {
+    initial: {
+      y: -1000,
+      opacity: 0,
+      visibility: "hidden",
+      transition: { duration: 0.5 },
+      translateX: "-50%",
+      translateY: "-50%",
+    },
+    animate: {
+      y: 0,
+      opacity: 1,
+      visibility: "visible",
+      transition: { duration: 0.5 },
+      translateX: "-50%",
+      translateY: "-50%",
+    },
+  };
 
   const closeModalHandleClick = () => {
     dispatch(toggleModalIsVisible());
@@ -35,8 +61,14 @@ const ModalCleanList = ({ list }) => {
   };
 
   return (
-    <div className="modalcleanlist">
-      <div className="modalcleanlist__container">
+    <motion.div
+      className="modalcleanlist"
+      initial="initial"
+      animate="animate"
+      exit="initial"
+      variants={overlayVariants}
+    >
+      <motion.div className="modalcleanlist__container" initial="initial" animate="animate" variants={modalVariants}>
         <p className="modalcleanlist__text">{`Do you want to remove all completed items from ${list.list}?`}</p>
         <div className="modalcleanlist__checkboxcontainer">
           <label className="modalcleanlist__customcheckbox">
@@ -59,8 +91,8 @@ const ModalCleanList = ({ list }) => {
             Yes
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addList } from "../../store/listSlice";
 import Form from "../Form/Form";
 import ListItemsContainer from "../ListItemsContainer/ListItemsContainer";
+//framer-motion
+// import { motion, AnimatePresence } from "framer-motion";
 //*scss
 import "./appcontainer.scss";
 

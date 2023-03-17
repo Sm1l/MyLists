@@ -25,12 +25,13 @@ const ListItem = ({ list, setAppList, i }) => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.3,
+        delay: i * 0.2,
         type: "just",
         ease: "easeInOut",
         duration: 0.5,
       },
     }),
+    exit: { opacity: 0, x: 1000, transition: { duration: 1 } },
   };
 
   const buttonVariants = {
@@ -39,7 +40,7 @@ const ListItem = ({ list, setAppList, i }) => {
       scale: 3,
       transition: {
         type: "spring",
-        duration: 1,
+        duration: 0.5,
       },
     },
     animate: {
@@ -47,7 +48,7 @@ const ListItem = ({ list, setAppList, i }) => {
       scale: 1,
       transition: {
         type: "spring",
-        duration: 1,
+        duration: 0.5,
       },
     },
   };
@@ -98,8 +99,8 @@ const ListItem = ({ list, setAppList, i }) => {
       variants={listItemVariants}
       initial="initial"
       animate="animate"
+      exit="exit"
       custom={i}
-      exit="initial"
     >
       <div
         className={!storeListItemIsActive ? "listitem__button" : "listitem__button listitem_active"}

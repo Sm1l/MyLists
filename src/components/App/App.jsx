@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 //*components
 import AppContainer from "../AppContainer/AppContainer";
 import ModalCleanList from "../ModalCleanList/ModalCleanList";
+import { AnimatePresence } from "framer-motion";
 //*scss
 import "./app.scss";
 // import StyledApp from "./StyledApp";
@@ -18,7 +19,7 @@ function App() {
     // <StyledApp>
     <div className="app">
       <AppContainer setAppList={setAppList} />
-      {modalIsVisible && <ModalCleanList list={appList} />}
+      <AnimatePresence>{modalIsVisible && <ModalCleanList list={appList} />}</AnimatePresence>
     </div>
     // </StyledApp>
   );
