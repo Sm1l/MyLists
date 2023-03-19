@@ -1,20 +1,16 @@
 //*react
 import React from "react";
 //*components
-import Button from "../Button/Button";
-import Input from "../Input/Input";
+import Button from "../Button";
+import Input from "../Input";
 // import Button2 from "../Button/Button2";
-//*framer-motion
+//*animation
 import { motion } from "framer-motion";
+import { formVariants } from "./animation";
 //*scss
 import "./form.scss";
 
 const Form = ({ value, setValue, buttonName, placeholder, submitClickHandle, inputRef }) => {
-  const formVariants = {
-    initial: { opacity: 0, height: 0, transition: { duration: 0.5 } },
-    animate: { opacity: 1, height: "auto", transition: { duration: 0.5 } },
-    exit: { opacity: 0, height: 0, transition: { duration: 0 } },
-  };
   return (
     <motion.form
       action=""
@@ -27,7 +23,6 @@ const Form = ({ value, setValue, buttonName, placeholder, submitClickHandle, inp
     >
       <Input value={value} setValue={setValue} placeholder={placeholder} inputRef={inputRef} />
       <Button name={buttonName} type="submit" value={value} />
-      {/* <Button2 name={buttonName} type="submit" value={value} /> */}
     </motion.form>
   );
 };

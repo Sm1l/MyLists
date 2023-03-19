@@ -6,8 +6,9 @@ import { toggleModalIsVisible } from "../../store/modalSlice";
 import { cleanCheckedTasks } from "../../store/listSlice";
 //*helpers
 import { setCookie, getCookie } from "../../helpers/cookie";
-//*framer-motion
+//*animation
 import { motion } from "framer-motion";
+import { modalVariants, overlayVariants } from "./animation";
 //*scss
 import "./modalcleanlist.scss";
 
@@ -15,30 +16,6 @@ const ModalCleanList = ({ list }) => {
   const listId = list.listId;
   const dispatch = useDispatch();
   const [cookieIsChecked, setCookieIsChecked] = useState(false);
-
-  const overlayVariants = {
-    initial: { opacity: 0, transition: { duration: 0.5 } },
-    animate: { opacity: 1, transition: { duration: 0.5 } },
-  };
-
-  const modalVariants = {
-    initial: {
-      y: -1000,
-      opacity: 0,
-      visibility: "hidden",
-      transition: { duration: 0.5 },
-      translateX: "-50%",
-      translateY: "-50%",
-    },
-    animate: {
-      y: 0,
-      opacity: 1,
-      visibility: "visible",
-      transition: { duration: 0.5 },
-      translateX: "-50%",
-      translateY: "-50%",
-    },
-  };
 
   const closeModalHandleClick = () => {
     dispatch(toggleModalIsVisible());

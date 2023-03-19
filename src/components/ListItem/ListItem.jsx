@@ -3,55 +3,23 @@ import React from "react";
 //*redux
 import { useDispatch } from "react-redux";
 import { toggleListItemIsActive, deleteList, cleanCheckedTasks } from "../../store/listSlice";
+import { setSingleList } from "../../store/singleListSlice";
 import { toggleModalIsVisible } from "../../store/modalSlice";
 //*components
-import TaskItem from "../TaskItem/TaskItem";
+import TaskItem from "../TaskItem";
 //*helpers
 import { getCookie } from "../../helpers/cookie";
-//*framer-motion
+//*animation
 import { motion, AnimatePresence } from "framer-motion";
+import { listItemVariants, buttonVariants } from "./animation";
 //*scss
 import "./listitem.scss";
 import "../../abstracts/variables.scss";
 
-const ListItem = ({ list, setAppList, i }) => {
+const ListItem = ({ list, i }) => {
   const storeListItemIsActive = list.listItemIsActive;
   const listId = list.listId;
   const dispatch = useDispatch();
-
-  const listItemVariants = {
-    initial: { opacity: 0, y: 1000 },
-    animate: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.2,
-        type: "just",
-        ease: "easeInOut",
-        duration: 0.5,
-      },
-    }),
-    exit: { opacity: 0, x: 1000, transition: { duration: 1 } },
-  };
-
-  const buttonVariants = {
-    initial: {
-      opacity: 0,
-      scale: 3,
-      transition: {
-        type: "spring",
-        duration: 0.5,
-      },
-    },
-    animate: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        duration: 0.5,
-      },
-    },
-  };
 
   //* появление кнопки Clean
   const hasAnyCheckedTask = () => {
@@ -73,12 +41,17 @@ const ListItem = ({ list, setAppList, i }) => {
   const toggleListItemHandleClick = () => {
     dispatch(toggleListItemIsActive({ listId }));
   };
+  //*записываем в redux выбранный list
+  const setClearingList = () => {
+    dispatch(setSingleList({ list }));
+  };
+  //todo-------------------------------
 
   //*открытие модального окна очищения Task (наличие/отсутствие cookie)
   const cleanTasksHandleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setAppList(list);
+    setClearingList();
     if (getCookie("clearListWithoutRequest") === undefined) {
       dispatch(toggleModalIsVisible());
     } else {

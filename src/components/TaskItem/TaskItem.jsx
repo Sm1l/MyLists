@@ -5,10 +5,11 @@ import { useDispatch } from "react-redux";
 import { addTaskToList } from "../../store/listSlice";
 import { toggleInputIsActive } from "../../store/listSlice";
 //*components
-import Form from "../Form/Form";
-import TasksContainer from "../TasksContainer/TasksContainer";
-//*framer-motion
+import Form from "../Form";
+import TasksContainer from "../TasksContainer";
+//*animation
 import { motion, AnimatePresence } from "framer-motion";
+import { taskItemVariants } from "./animation";
 //*scss
 import "./taskitem.scss";
 
@@ -19,29 +20,6 @@ const TaskItem = ({ list }) => {
 
   const [task, setTask] = useState("");
   const inputRef = useRef(null);
-
-  const taskItemVariants = {
-    animate: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        // scale: 1,
-        // type: "just",
-        // ease: "easeInOut",
-        duration: 0.5,
-      },
-    },
-    initial: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        // scale: 0,
-        // type: "just",
-        // ease: "easeInOut",
-        duration: 0.5,
-      },
-    },
-  };
 
   //* toggle input + input focus
   const taskItemHandleClick = () => {

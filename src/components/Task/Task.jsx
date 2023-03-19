@@ -3,7 +3,7 @@ import React from "react";
 //*redux
 import { toggleTaskIsChecked } from "../../store/listSlice";
 import { useDispatch } from "react-redux";
-//*framer-motion
+//*animation
 import { motion } from "framer-motion";
 //*scss
 import "./task.scss";

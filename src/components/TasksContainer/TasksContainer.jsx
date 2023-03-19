@@ -1,8 +1,8 @@
 //*react
 import React from "react";
 //*components
-import Task from "../Task/Task";
-//*framer-motion
+import Task from "../Task";
+//*animation
 import { AnimatePresence } from "framer-motion";
 //*scss
 import "./taskscontainer.scss";
