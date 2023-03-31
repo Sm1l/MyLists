@@ -19,6 +19,7 @@
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    overflow: hidden;
 
     &:hover {
       // color: $color-black-op04; //* firstmobile убирать hover
@@ -27,6 +28,8 @@
 
   &__name {
     text-align: start;
+    width: 73%;
+    overflow: hidden;
   }
 
   &__number {

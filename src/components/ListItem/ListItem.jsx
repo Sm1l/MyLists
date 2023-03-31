@@ -108,7 +108,7 @@ const ListItem = ({ list, i }) => {
               exit="initial"
               variants={buttonVariants}
             >
-              Delete List
+              Delete
             </motion.button>
           )}
         </AnimatePresence>
